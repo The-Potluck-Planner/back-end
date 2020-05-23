@@ -17,7 +17,7 @@
 # `Users`
 ​
 - Update users by id
-- Delete users by id
+- Delete users by id <br>
 ​
 | HTTP | Path               | Desc                                   | Data|
 | -------------- | ------------------------- | ---------------------------------- |
@@ -32,7 +32,7 @@
 - Add a new Potluck event
 - Obtain list of Events by id
 - Update Events by id
-- Delete Events by id
+- Delete Events by id <br>
 ​
 | HTTP | Path               | Desc                                   | Data|
 | -------------- | ------------------------- | ---------------------------------- |
