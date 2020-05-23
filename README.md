@@ -1,10 +1,12 @@
+# Potluck Planner - Build Week
+
 # `Heroku API` 
 - Will post api link here when deployed
 ​
-# `Auth Login`
-​
-- Register and Log in user
-- Get list of users and user by id
+## API Endpoints
+### Authentication
+<!-- - Register and Log in user
+- Get list of users and user by id -->
 ​
 | HTTP | Path               | Desc                                   | Data|
 Method | Endpoint | Body (required) | Body (optional) | Notes
@@ -51,8 +53,7 @@ Harper Nettesheim https://github.com/hnetty
 
 Front-end:
 ------------------
-Wei Peluso https://github.com/weipeluso
-
+Wei Peluso https://github.com/weipeluso <br>
 Ian McElroy https://github.com/mcelroyian
 
 Back-End:
