@@ -1,27 +1,25 @@
 # Potluck Planner - Build Week
 
-# `Heroku API` 
+# Heroku API
 - Will post api link here when deployed
 ​
-## API Endpoints
-### Authentication
+## `API Endpoints`
+## `Authentication`
 <!-- - Register and Log in user
 - Get list of users and user by id -->
 ​
 | HTTP | Path               | Desc                                   | Data|
-Method | Endpoint | Body (required) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- |
 | POST | /auth/register | Registers new user. | Expects `{"name:", "username":", "password"}`|
 | POST | /auth/login    | Logs in a user.   |  Expects `{"username":"", "password":""}`|
 ​
 ​
-# `Users` Table
+# `Users`
 ​
 - Update users by id
 - Delete users by id
 ​
 | HTTP | Path               | Desc                                   | Data|
-Method | Endpoint | Body (required) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- |
 | GET | /users            | Gets all users     |  Output `{"id", "username":"", "password":""}`|
 | GET | /users/:id      | Gets user by ID    | Output `{"id", "username":"", "password"}`|
@@ -29,7 +27,7 @@ Method | Endpoint | Body (required) | Body (optional) | Notes
 | DELETE | /users/:id | Deletes a user by id.   |  Expects `{no user information on body, just "id"}`|
 ​
 ​
-# `Events` Table
+# `Events`
 ​
 - Add a new Potluck event
 - Obtain list of Events by id
@@ -37,7 +35,6 @@ Method | Endpoint | Body (required) | Body (optional) | Notes
 - Delete Events by id
 ​
 | HTTP | Path               | Desc                                   | Data|
-Method | Endpoint | Body (required) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- |
 | GET | /events | Lists all events.   |  Output `{"id", "title", "description" }`|
 | GET | /events/:id    | Gets an event by id.   |  Expects `{"id", "title":"", "description"}`|
