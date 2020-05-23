@@ -21,10 +21,10 @@
 ​
 | HTTP | Path               | Description                                   | Data|
 | -------------- | ------------------------- | ---------------------------------- |
-| GET | /users            | Gets all users     |  Output `{"id", "name":"", "username":"", "password":""}`|
-| GET | /users/:id      | Gets user by ID    | Output `{"id", "username":"", "password"}`|
-| PUT | /users/:id    | Updates a user by id.   |  Expects `{"id", "username":"", "password":""}`|
-| DELETE | /users/:id | Deletes a user by id.   |  Expects `{no user information on body, just "id"}`|
+GET | /users            | Gets all users     |  Output `{"id", "name":"", "username":"", "password":""}`|
+GET | /users/:id      | Gets user by ID    | Output `{"id", "username":"", "password"}`|
+PUT | /users/:id    | Updates a user by id.   |  Expects `{"id", "username":"", "password":""}`|
+DELETE | /users/:id | Deletes a user by id.   |  Expects `{no user information on body, just "id"}`|
 ​
 ​
 # `Events`
@@ -34,8 +34,6 @@
 - Update Events by id
 - Delete Events by id <br>
 ​
-| HTTP | Path               | Description                                   | Data|
-| -------------- | ------------------------- | ---------------------------------- |
 | GET | /events | Lists all events.   |  Output `{"id", "title", "description" }`|
 | GET | /events/:id    | Gets an event by id.   |  Expects `{"id", "title":"", "description"}`|
 | POST | /events      | Adds a new event.    |Ouput `{"id", "title":"", "description": ""}`|
@@ -44,11 +42,11 @@
 ### Plants
 Method | Endpoint | Body (required) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
-GET | /api/plants | N/A | N/A | Returns all the plants associated with this registered user |
-GET | /api/plants/:id |  N/A | N/A | Returns plant object associated with this id |
-POST | /api/plants | nickname (string), species (string), h2oFrequency (string) | image (string of the url) | Creates new plant object and returns it. |
-PUT | /api/plants/:id |  at least one of the optional properties | nickname (string), species (string), h2oFrequency (string), or image (string of the url) | Updates the plant with this id, returns message "plant updated" |
-DELETE | /api/plants/:id | N/A | N/A | Deletes the plant with this id from the database, returns message "plant deleted" |
+GET | /api/events | N/A | N/A | Returns all the events associated with this registered user |
+GET | /api/events/:id |  N/A | N/A | Returns plant object associated with this id |
+POST | /api/events | nickname (string), species (string), h2oFrequency (string) | image (string of the url) | Creates new plant object and returns it. |
+PUT | /api/events/:id |  at least one of the optional properties | nickname (string), species (string), h2oFrequency (string), or image (string of the url) | Updates the plant with this id, returns message "plant updated" |
+DELETE | /api/events/:id | N/A | N/A | Deletes the plant with this id from the database, returns message "plant deleted" |
 
 # Credits
 
