@@ -39,14 +39,14 @@ DELETE | /users/:id | Deletes a user by id.   |  Expects `{no user information o
 | POST | /events      | Adds a new event.    |Ouput `{"id", "title":"", "description": ""}`|
 | DELETE | /events/:id | Deletes a event by id.   |  Expects `{"id" no user information on body}`|
 
-### Plants
+### Events
 Method | Endpoint | Body (required) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
 GET | /api/events | N/A | N/A | Returns all the events associated with this registered user |
-GET | /api/events/:id |  N/A | N/A | Returns plant object associated with this id |
-POST | /api/events | nickname (string), species (string), h2oFrequency (string) | image (string of the url) | Creates new plant object and returns it. |
-PUT | /api/events/:id |  at least one of the optional properties | nickname (string), species (string), h2oFrequency (string), or image (string of the url) | Updates the plant with this id, returns message "plant updated" |
-DELETE | /api/events/:id | N/A | N/A | Deletes the plant with this id from the database, returns message "plant deleted" |
+GET | /api/events/:id |  N/A | N/A | Returns event object associated with this id |
+POST | /api/events | title, description, month, day, year, time_from, time_to | N/A | Creates new event object and returns it. |
+PUT | /api/events/:id |  N/A | title, description, month, day, year, time_from, time_to | Updates the event with this id, returns message "event updated" |
+DELETE | /api/events/:id | N/A | N/A | Deletes the event with this id, returns message "event deleted" |
 
 # Credits
 
