@@ -6,7 +6,7 @@
 ## `API Endpoints`
 ## `Authentication`
 - Register and Log in user
-- Get list of users and user by id
+- Get list of users and user by id <br> <br>
 ​
 Method | Endpoint | Body (required) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
