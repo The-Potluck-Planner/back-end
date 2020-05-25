@@ -8,10 +8,10 @@
 - Register and Log in user
 - Get list of users and user by id
 ​
-| HTTP | Path               | Description                                   | Data|
-| -------------- | ------------------------- | ---------------------------------- |
-| POST | /auth/register | Registers new user. | Expects `{"name:", "username":", "password"}`|
-| POST | /auth/login    | Logs in a user.   |  Expects `{"username":"", "password":""}`|
+Method | Endpoint | Body (required) | Body (optional) | Notes
+| ----- | ----------------- | -------------------- | --------------------- | ------------------ |
+POST | /auth/register | name (string), username (string), password (string) | N/A | Creates a new user. On success, returns message "user created" and newUser object with id & username.  Status 201 |
+POST | /auth/login |  username (string), password (string) | N/A | Logs in users who already exists. On success, returns message "login successful" and JSON Web Token (Status 200). If unregistered users try to log in, returns "invalid username or password" (Status 401) |
 ​
 ​
 # `Users`
