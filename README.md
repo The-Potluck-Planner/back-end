@@ -1,20 +1,23 @@
 # Potluck Planner - Build Week
 
 # Heroku API
-- Will post api link here when deployed
+- Will post api link here when deployed <br>
 ​
-## `API Endpoints`
+# `API Endpoints`
 ### Authentication
-Method | Endpoint | Body (required) | Body (optional) | Notes
+Method | Endpoint | Body (*Required*) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
-POST | /auth/register | name (string), username (string), password (string) | N/A | Creates a new user. On success, returns message "user created" and newUser object with id & username.  Status 201 |
-POST | /auth/login |  username (string), password (string) | N/A | Logs in users who already exists. On success, returns message "login successful" and JSON Web Token (Status 200). If unregistered users try to log in, returns "invalid username or password" (Status 401) |
+POST | /auth/register | name, username, password | N/A | Creates a new user. On success, returns message "user created" and newUser object with id & username.  Status 201 |
+POST | /auth/login |  username, password | N/A | Logs in users who already exists. On success, returns message "login successful" and JSON Web Token (Status 200). If unregistered users try to log in, returns "invalid username or password" (Status 401) |
 ### Users
-Method | Endpoint | Body (required) | Body (optional) | Notes
+Method | Endpoint | Body (*Required*) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
-PUT | /api/users/:id | either password (string), or phoneNumber (10-digit string); or both | N/A | Updates the user with this id, and returns message "user updated successfully". |
+GET | /api/users | N/A | N/A | Returns all users from database |
+GET | /api/users/:id | N/A | N/A | Returns user object with this id |
+PUT | /api/users/:id | either name, username, password,  or all | N/A | Updates the user with this id, and returns message "user updated successfully". |
+DELETE | /api/users/:id | N/A | N/A | Deletes the user with this id, returns message "user deleted" |
 ### Events
-Method | Endpoint | Body (required) | Body (optional) | Notes
+Method | Endpoint | Body (*Required*) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
 GET | /api/events | N/A | N/A | Returns all the events associated with this registered user |
 GET | /api/events/:id |  N/A | N/A | Returns event object associated with this id |
