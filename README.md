@@ -21,8 +21,8 @@ Method | Endpoint | Body (*Required*) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
 GET | /api/events | N/A | N/A | Returns all the events associated with this registered user |
 GET | /api/events/:id |  N/A | N/A | Returns event object associated with this id |
-POST | /api/events | title, month, day, year, time_from, time_to, location | description | Creates new event object and returns it. |
-PUT | /api/events/:id |  N/A | title, description, month, day, year, time_from, time_to, location | Updates the event with this id, returns message "event updated" |
+POST | /api/events | title, month, day, year, time_From, time_To, location | description | Creates new event object and returns it. |
+PUT | /api/events/:id |  N/A | title, description, month, day, year, time_From, time_To, location | Updates the event with this id, returns message "event updated" |
 DELETE | /api/events/:id | N/A | N/A | Deletes the event with this id, returns message "event deleted" |
 
 # Credits
