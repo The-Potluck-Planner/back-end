@@ -3,8 +3,8 @@ exports.up = function(knex) {
   return knex.schema
   .createTable("users", users => {
       users.increments()
-      users.string("name").notNullable()
-      users.string("username").notNullable().unique()
+      users.string("name").notNullable().index()
+      users.string("username").notNullable().unique().index()
       users.string("password").notNullable()
   })
   .createTable("events", events => {
