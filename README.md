@@ -7,8 +7,8 @@
 ## Authentication
 Method | Endpoint | Body (*Required*) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
-POST | /auth/register | name, username, password | N/A | Creates a new user. On success, returns message "user created" and newUser object with id & username.  Status 201 |
-POST | /auth/login |  username, password | N/A | Logs in users who already exists. On success, returns message "login successful" and JSON Web Token (Status 200). If unregistered users try to log in, returns "invalid username or password" (Status 401) |
+POST | /auth/register | name, username, password | N/A | Creates a new user. On success, returns message "user created" and newUser object with id & username. |
+POST | /auth/login |  username, password | N/A | Logs in users who already exists. On success, returns message "login successful" and JSON Web Token. If unregistered users try to log in, returns "invalid username or password" |
 ## Users
 Method | Endpoint | Body (*Required*) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
