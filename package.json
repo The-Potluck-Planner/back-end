@@ -1,0 +1,33 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "## Heroku API - Will post api link here when deployed <br> ​ # `API Endpoints` ## Authentication Method | Endpoint | Body (*Required*) | Body (optional) | Notes | ----- | ----------------- | -------------------- | --------------------- | ------------------ | POST | /auth/register | name, username, password | N/A | Creates a new user. On success, returns message \"user created\" and newUser object with id & username. | POST | /auth/login |  username, password | N/A | Logs in users who already exists. On success, returns message \"login successful\" and JSON Web Token. If unregistered users try to log in, returns \"invalid username or password\" | ## Users Method | Endpoint | Body (*Required*) | Body (optional) | Notes | ----- | ----------------- | -------------------- | --------------------- | ------------------ | GET | /api/users | N/A | N/A | Returns all users from database | GET | /api/users/:id | N/A | N/A | Returns user object with this id | PUT | /api/users/:id | either name, username, password,  or all | N/A | Updates the user with this id, and returns message \"user updated successfully\". | DELETE | /api/users/:id | N/A | N/A | Deletes the user with this id, returns message \"user deleted\" | ## Events Method | Endpoint | Body (*Required*) | Body (optional) | Notes | ----- | ----------------- | -------------------- | --------------------- | ------------------ | GET | /api/events | N/A | N/A | Returns all the events associated with this registered user | GET | /api/events/:id |  N/A | N/A | Returns event object associated with this id | POST | /api/events | title, description, month, day, year, time_from, time_to, location | N/A | Creates new event object and returns it. | PUT | /api/events/:id |  N/A | title, description, month, day, year, time_from, time_to, location | Updates the event with this id, returns message \"event updated\" | DELETE | /api/events/:id | N/A | N/A | Deletes the event with this id, returns message \"event deleted\" |",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "server": "nodemone index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berachele/back-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/berachele/back-end/issues"
+  },
+  "homepage": "https://github.com/berachele/back-end#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "knex": "^0.21.1",
+    "knex-cleaner": "^1.3.0",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
