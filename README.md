@@ -9,21 +9,10 @@ Method | Endpoint | Body (required) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
 POST | /auth/register | name (string), username (string), password (string) | N/A | Creates a new user. On success, returns message "user created" and newUser object with id & username.  Status 201 |
 POST | /auth/login |  username (string), password (string) | N/A | Logs in users who already exists. On success, returns message "login successful" and JSON Web Token (Status 200). If unregistered users try to log in, returns "invalid username or password" (Status 401) |
-​
-​
-# `Users`
-​
-- Update users by id
-- Delete users by id <br>
-​
-| HTTP | Path               | Description                                   | Data|
-| -------------- | ------------------------- | ---------------------------------- |
-GET | /users            | Gets all users     |  Output `{"id", "name":"", "username":"", "password":""}`|
-GET | /users/:id      | Gets user by ID    | Output `{"id", "username":"", "password"}`|
-PUT | /users/:id    | Updates a user by id.   |  Expects `{"id", "username":"", "password":""}`|
-DELETE | /users/:id | Deletes a user by id.   |  Expects `{no user information on body, just "id"}`|
-​
-​
+### Users
+Method | Endpoint | Body (required) | Body (optional) | Notes
+| ----- | ----------------- | -------------------- | --------------------- | ------------------ |
+PUT | /api/users/:id | either password (string), or phoneNumber (10-digit string); or both | N/A | Updates the user with this id, and returns message "user updated successfully". |
 ### Events
 Method | Endpoint | Body (required) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
