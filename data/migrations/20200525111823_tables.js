@@ -9,6 +9,12 @@ exports.up = function(knex) {
   })
   .createTable("events", events => {
       events.increments()
+      events.integer("userID")
+        .unsigned()
+        .notNullable()
+        .references("users.id")
+        .onUpdate("CASCADE")
+        .onDelete("RESTRICT")
       events.string("title").notNullable()
       events.string("description")
       events.string("month").notNullable()

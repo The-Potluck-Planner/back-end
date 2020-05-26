@@ -26,7 +26,7 @@ server.use('/api/events', eventRouter)
 server.use((err, req, res, next) => {
     console.log({err})
     res.status(500).json({
-        message: "There was an error retrieving this data"
+        message: `There was an error retrieving this data: ${err.message}`
     })
 })
 
