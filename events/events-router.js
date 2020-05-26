@@ -57,14 +57,14 @@ router.delete('/:id', validEventID, (req, res, next) => {
     const id = req.params.id
     Events.remove(id)
     .then(event => {
-        // if(event === 1){
-        //     res.status(204).json({
-        //         message: `Event ${event.title} deleted`
-        //     })
-        // }
-        res.status(204).json(event)
+        if(event === 1){
+            res.status(204).json({
+                message: `Event ${event.title} deleted`
+            })
+        }
+        // res.status(204).json(event)
     })
-    .catch(next())
+    .catch(next)
 })
 
 

@@ -22,6 +22,9 @@ function add(event) {
     .then(ids => {
         return getByID(ids[0])
     })
+    //if have error adding in live server
+    // const [newEvent] = await db("users").insert(event, "*")
+    // return newEvent
 }
 
 function update(id, changes) {
