@@ -6,11 +6,13 @@ module.exports = {
     findBy,
 }
 
-function add(user) {
-    return db("users").insert(user)
-    .then(show => {
-        return findByID(show[0])
-    })
+async function add(user) {
+    // return db("users").insert(user)
+    // .then(show => {
+    //     return findByID(show[0])
+    // })
+    const [id] = await db("users").insert(user)
+    return findByID(id)
 }
 
 function findByID(id) {
