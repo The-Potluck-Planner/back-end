@@ -18,7 +18,7 @@ function isValidLogin(user) {
 function validEventID() {
     return(req, res, next) => {
         const id = req.params.id
-        Events.findByID(id)
+        Events.getByID(id)
         .then(event => {
             if(event){
                 req.event = event

@@ -1,18 +1,18 @@
 const db = require('../data/db-config')
 
 module.exports = {
-    find,
-    findByID,
+    get,
+    getByID,
     add,
     update,
     remove,
 }
 
-function find() {
+function get() {
     return db("events")
 }
 
-function findByID(id) {
+function getByID(id) {
     return db("events").where({id}).first()
 }
 

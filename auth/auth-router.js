@@ -12,14 +12,13 @@ router.post('/register', (req, res, next) => {
     if(isValidReg(creds)){
         const rounds = process.env.BCRYPT_ROUNDS || 10
         const hash = bcrypt.hashSync(creds.password, rounds)
-
         creds.password = hash
         
         Users.add(creds)
         .then(user => {
             res.status(201).json({
                 message: "User created",
-                data: user
+                data: {id: user.id, name: user.name, username: user.username}
             })
         })
         .catch(next)
@@ -52,7 +51,7 @@ router.post('/login', (req, res, next) => {
         .catch(next)
     }else {
         res.status(401).json({
-            message: "Invalid username or password"
+            message: "Please provide valid username and password."
         })
     }
 })

@@ -7,7 +7,7 @@ const {validEventID} = require('../middleware/middleware')
 router.use(restricted)
 //bringing in /api/events
 router.get('/', (req, res, next) => {
-    Events.find()
+    Events.get()
     .then(event => {
         res.status(200).json(event)
     })
@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', validEventID(), (req, res, next) => {
     const id = req.params.id
-    Events.findByID(id)
+    Events.getByID(id)
     .then(event => {
         res.status(200).json(event)
     })
