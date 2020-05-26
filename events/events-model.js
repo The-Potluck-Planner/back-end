@@ -17,13 +17,17 @@ function getByID(id) {
 }
 
 function add(event) {
-
+    return db("events")
+    .insert(event)
+    .then(ids => {
+        return getByID(ids[0])
+    })
 }
 
-function update(id) {
-
+function update(id, changes) {
+    return db("events").where({id}).update(changes)
 }
 
 function remove(id) {
-
+    return db("events").where({id}).del()
 }
