@@ -11,6 +11,7 @@ exports.seed = function(knex) {
       ]);
     });
 };
+
 /*DATA REQUIRED: 
 name
 username
