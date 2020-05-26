@@ -11,7 +11,7 @@ async function add(user) {
     // .then(show => {
     //     return findByID(show[0])
     // })
-    const [id] = await db("users").insert(user)
+    const id = await db("users").insert(user)
     return findByID(id)
 }
 
