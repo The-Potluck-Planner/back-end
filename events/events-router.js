@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.get('/:id', validEventID(), (req, res, next) => {
+router.get('/:id', validEventID, (req, res, next) => {
     const id = req.params.id
     Events.getByID(id)
     .then(event => {

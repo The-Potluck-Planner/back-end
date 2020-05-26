@@ -18,7 +18,7 @@ router.post('/register', (req, res, next) => {
         .then(user => {
             res.status(201).json({
                 message: "User created",
-                data: {id: user.id, name: user.name, username: user.username}
+                user
             })
         })
         .catch(next)
