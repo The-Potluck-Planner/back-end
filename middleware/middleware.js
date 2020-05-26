@@ -15,13 +15,12 @@ function isValidLogin(user) {
 }
 
 //events
-function validEventID() {
-    return(req, res, next) => {
-        const id = req.params.id
-        Events.getByID(id)
+function validEventID(req, res, next) {
+        Events.getByID(req.params.id)
         .then(event => {
             if(event){
                 req.event = event
+                next()
             }else {
                 res.status(400).json({
                     message: "Invalid event ID"
@@ -29,5 +28,8 @@ function validEventID() {
             }
         })
         .catch(next)
-    }
+}
+
+function validNewEvent(req, res, next) {
+    
 }
