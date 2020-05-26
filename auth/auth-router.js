@@ -1,11 +1,12 @@
 const bcrypt = require('bcryptjs')
-const router = require('express')
+const express = require('express')
+const router = express.Router()
 const Users = require('./auth-model')
-const {isValidReg, isValidLogin} = require('./middleware')
+const {isValidReg, isValidLogin} = require('../middleware/middleware')
 const generateToken = require('./generateToken')
 
 //bringing in /auth
-router.post('/register', (req, res) => {
+router.post('/register', (req, res, next) => {
     const creds = req.body
 
     if(isValidReg(creds)){
@@ -21,12 +22,7 @@ router.post('/register', (req, res) => {
                 data: user
             })
         })
-        .catch(err => {
-            console.log({err})
-            res.status(500).json({
-                message: `There was an error: ${err.message}`
-            })
-        })
+        .catch(next)
     }else {
         res.status(400).json({
             message: "Please provide valid name, username and password."
@@ -34,7 +30,7 @@ router.post('/register', (req, res) => {
     }
 })
 
-router.post('/login', (req, res) => {
+router.post('/login', (req, res, next) => {
     const {username, password} = req.body
 
     if(isValidLogin(req.body)) {
@@ -53,12 +49,7 @@ router.post('/login', (req, res) => {
                 })
             }
         })
-        .catch(err => {
-            console.log({err})
-            res.status(500).json({
-                message: `There was an error: ${err.message}`
-            })
-        })
+        .catch(next)
     }else {
         res.status(401).json({
             message: "Invalid username or password"

@@ -1,7 +1,9 @@
-const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
+
+const express = require('express')
 const authRouter = require('../auth/auth-router')
+const eventRouter = require('../events/events-router')
 //other routes here
 
 const server = express()
@@ -17,6 +19,15 @@ server.get('/', (req, res) => {
 })
 
 server.use('/auth', authRouter)
+server.use('/api/events', eventRouter)
 //other routes here
+
+//error middleware
+server.use((err, req, res, next) => {
+    console.log({err})
+    res.status(500).json({
+        message: "There was an error retrieving this data"
+    })
+})
 
 module.exports = server;

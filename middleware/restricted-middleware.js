@@ -9,12 +9,16 @@ module.exports = (req, res, next) => {
 
         jwt.verify(token, secret, (err) => {
             if(err){
-                res.status(401).json({
-                    message: "Ivalid username or password"
+                res.status(400).json({
+                    message: "Access denied"
                 })
             }else{
                 next()
             }
+        })
+    }else {
+        res.status(401).json({
+            message: "Please provide your credentials"
         })
     }
 }
