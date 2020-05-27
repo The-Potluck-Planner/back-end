@@ -17,12 +17,6 @@ function getByID(id) {
 }
 
 async function add(event) {
-    // return db("events")
-    // .insert(event)
-    // .then(ids => {
-    //     return getByID(ids[0])
-    // })
-    //if have error adding in live server
     const [newEvent] = await db("events").insert(event, "*")
     return newEvent
 }
