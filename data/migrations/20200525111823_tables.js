@@ -24,6 +24,25 @@ exports.up = function(knex) {
       events.integer("time_To").notNullable()
       events.string("location").notNullable()
   })
+  .createTable("food", food => {
+      food.increments()
+      food.integer("eventID")
+        .unsigned()
+        .notNullable()
+        .references("events.id")
+        .onUpdate("CASCADE")
+        .onDelete("RESTRICT")
+      food.integer("userID")
+        .unsigned()
+        .defaultTo(null)
+        .references("users.id")
+        .onUpdate("CASCADE")
+        .onDelete("RESTRICT")
+      food.string("category").notNullable()
+      food.varchar("quantity").notNullable()
+      food.string("name").notNullable().unique()
+      food.boolean("assigned").defaultTo(false)
+  })
   .createTable("friends", friends => {
       friends.increments()
       friends.integer("userID")
@@ -55,6 +74,7 @@ exports.down = function(knex) {
   return knex.schema
   .dropTableIfExists("events_friends")
   .dropTableIfExists("friends")
+  .dropTableIfExists("food")
   .dropTableIfExists("events")
   .dropTableIfExists("users")
 };
