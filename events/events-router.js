@@ -23,6 +23,7 @@ router.get('/:id', validEventID, (req, res, next) => {
     })
     .catch(next)
 })
+//getByUSERID -->return all events they're organizer of and guests of events
 
 router.post('/', validNewEvent, (req, res, next) => {
     const newEvent = req.body
