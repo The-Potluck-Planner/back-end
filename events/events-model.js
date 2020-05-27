@@ -10,13 +10,16 @@ module.exports = {
 }
 
 function get() {
-    return db.select("e.id", "u.name as Organizer", "e.title", "e.description", "e.month", "e.day", "e.year", "e.time_From", "e.time_To", "e.location")
+    return db.select("e.id", "u.name as organizer", "e.title", "e.description", "e.month", "e.day", "e.year", "e.time_From", "e.time_To", "e.location")
     .from("events as e")
     .join("users as u", "u.id", "=", "e.userID")
 }
 
 function getByID(id) {
-    return db("events").where({id}).first()
+    return db.select("e.id", "u.id", "u.name as organizer", "e.title", "e.description", "e.month", "e.day", "e.year", "e.time_From", "e.time_To", "e.location")
+    .from("events as e")
+    .join("users as u", "u.id", "=", "e.userID")
+    .where("e.id", "=", `${id}`)
 }
 
 async function add(event) {
