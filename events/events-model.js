@@ -17,14 +17,14 @@ function getByID(id) {
 }
 
 function add(event) {
-    return db("events")
-    .insert(event)
-    .then(ids => {
-        return getByID(ids[0])
-    })
+    // return db("events")
+    // .insert(event)
+    // .then(ids => {
+    //     return getByID(ids[0])
+    // })
     //if have error adding in live server
-    // const [newEvent] = await db("users").insert(event, "*")
-    // return newEvent
+    const [newEvent] = await db("users").insert(event, "*")
+    return newEvent
 }
 
 function update(id, changes) {

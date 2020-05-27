@@ -5,6 +5,7 @@ const restricted = require('../middleware/restricted-middleware')
 const {validEventID, validNewEvent} = require('../middleware/middleware')
 
 router.use(restricted)
+
 //bringing in /api/events
 router.get('/', (req, res, next) => {
     Events.get()
