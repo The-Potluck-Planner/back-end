@@ -29,7 +29,7 @@ router.post('/', validNewEvent, (req, res, next) => {
     Events.add(newEvent)
     .then(event => {
         res.status(201).json({
-            message: `Event ${event.title} created`,
+            message: `Event '${event.title}' created`,
             event
         })
     })
@@ -45,7 +45,7 @@ router.put('/:id', validEventID, validNewEvent, (req, res, next) => {
             Events.getByID(id)
             .then(success => {
                 res.status(200).json({
-                    message: `Event ${success.title} updated`,
+                    message: `Event '${success.title}' updated`,
                     success
                 })
             })

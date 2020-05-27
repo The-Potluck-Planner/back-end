@@ -4,6 +4,7 @@ const helmet = require('helmet')
 const express = require('express')
 const authRouter = require('../auth/auth-router')
 const eventRouter = require('../events/events-router')
+const userRouter = require('../users/users-router')
 //other routes here
 
 const server = express()
@@ -20,6 +21,7 @@ server.get('/', (req, res) => {
 
 server.use('/auth', authRouter)
 server.use('/api/events', eventRouter)
+server.use('/api/users', userRouter)
 //other routes here
 
 //error middleware
