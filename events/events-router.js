@@ -68,6 +68,14 @@ router.delete('/:id', validEventID, (req, res, next) => {
 })
 
 //get /events/:id/food --> all food associated with event id
+router.get('/:id/food', (req, res, next) =>{
+    const id = req.params.id
+    Events.getFoodList(id)
+    .then(list => {
+        res.status(200).json(list)
+    })
+    .catch(next)
+})
 
 
 module.exports = router

@@ -6,6 +6,7 @@ module.exports = {
     add,
     update,
     remove,
+    getFoodList,
 }
 
 function get() {
@@ -28,5 +29,10 @@ function update(id, changes) {
 function remove(id) {
     return db("events").where({id}).del()
 }
-
-//get /events/:id/food --> all food associated with event id
+//get /events/:id/food
+function getFoodList(id){
+    return db.select("f.id", "f.eventID", "e.title as event_name", "f.userID", "f.category", "f.quantity", "f.name", "f.assigned")
+    .from("food as f")
+    .join("events as e", "e.id", "=", "f.eventID")
+    .where({eventID: id})
+}
