@@ -7,6 +7,7 @@ module.exports = {
     update,
     remove,
     getFoodList,
+    test
 }
 
 function get() {
@@ -40,4 +41,9 @@ function getFoodList(id){
     .from("food as f")
     .join("events as e", "e.id", "=", "f.eventID")
     .where({eventID: id})
+}
+
+function test(id){
+    return db("events")
+    .where({userID: id})
 }

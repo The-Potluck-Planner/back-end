@@ -1,18 +1,30 @@
 const express = require('express')
 const router = express.Router()
 const Events = require('./events-model')
+const Users = require('../users/users-model')
 const restricted = require('../middleware/restricted-middleware')
 const {validEventID, validNewEvent} = require('../middleware/middleware')
 
 router.use(restricted)
 
 //bringing in /api/events
-router.get('/', (req, res, next) => {
-    Events.get()
-    .then(event => {
-        res.status(200).json(event)
+router.get('/users/:id', validEventID, (req, res, next) => {
+    //getByUSERID -->return all events they're organizer of and guests of events
+    // Events.get()
+    // .then(event => {
+    //     res.status(200).json(event)
+    // })
+    // .catch(next)
+    const id = req.params.id
+    Promise.all([
+        Events.test(id),
+        Users.getInvited(id)
+    ])
+    .then(([organizedEvents, guestEvents]) => {
+        res.status(200).json({organizedEvents, guestEvents})
     })
     .catch(next)
+    
 })
 
 router.get('/:id', validEventID, (req, res, next) => {
@@ -23,7 +35,6 @@ router.get('/:id', validEventID, (req, res, next) => {
     })
     .catch(next)
 })
-//getByUSERID -->return all events they're organizer of and guests of events
 
 router.post('/', validNewEvent, (req, res, next) => {
     const newEvent = req.body
