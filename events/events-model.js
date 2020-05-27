@@ -28,3 +28,5 @@ function update(id, changes) {
 function remove(id) {
     return db("events").where({id}).del()
 }
+
+//get /events/:id/food --> all food associated with event id

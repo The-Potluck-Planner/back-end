@@ -67,5 +67,7 @@ router.delete('/:id', validEventID, (req, res, next) => {
     .catch(next)
 })
 
+//get /events/:id/food --> all food associated with event id
+
 
 module.exports = router
