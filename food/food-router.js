@@ -29,7 +29,7 @@ router.post('/', validFood, (req, res, next) => {
     Food.add(newFood)
     .then(food => {
         res.status(201).json({
-            message: `Food created`,
+            message: `Food '${food.name}' created`,
             food
         })
     })

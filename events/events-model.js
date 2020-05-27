@@ -10,7 +10,9 @@ module.exports = {
 }
 
 function get() {
-    return db("events")
+    return db.select("e.id", "u.name as Organizer", "e.title", "e.description", "e.month", "e.day", "e.year", "e.time_From", "e.time_To", "e.location")
+    .from("events as e")
+    .join("users as u", "u.id", "=", "e.userID")
 }
 
 function getByID(id) {
