@@ -9,12 +9,6 @@ router.use(restricted)
 
 //bringing in /api/events
 router.get('/users/:id', validEventID, (req, res, next) => {
-    //getByUSERID -->return all events they're organizer of and guests of events
-    // Events.get()
-    // .then(event => {
-    //     res.status(200).json(event)
-    // })
-    // .catch(next)
     const id = req.params.id
     Promise.all([
         Events.test(id),

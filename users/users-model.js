@@ -25,7 +25,8 @@ function remove(id) {
 }
 
 function getInvited(id) {
-    return db("users as u")
+    return db.select("f.RSVP", "e.title", "e.description", "e.month", "e.day", "e.year", "e.time_From", "e.time_To", "e.location")
+    .from("users as u")
     .join("friends as f", "f.userID", "=", "u.id")
     .join("events_friends as EF", "f.id", "=", "EF.friendsID")
     .join("events as e" ,"e.id", "=", "EF.eventsID")
