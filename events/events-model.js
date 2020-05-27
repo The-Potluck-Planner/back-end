@@ -16,7 +16,7 @@ function getByID(id) {
     return db("events").where({id}).first()
 }
 
-function add(event) {
+async function add(event) {
     // return db("events")
     // .insert(event)
     // .then(ids => {
