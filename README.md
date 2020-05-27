@@ -1,7 +1,7 @@
 # Potluck Planner - Build Week
 
 ## Heroku API
-- Will post api link here when deployed <br>
+https://thepotluckplanner.herokuapp.com/ <br>
 ​
 # `API Endpoints`
 ## Authentication
@@ -26,6 +26,10 @@ PUT | /api/events/:id |  N/A | title, description, month, day, year, time_From, 
 DELETE | /api/events/:id | N/A | N/A | Deletes the event with this id, returns message "event deleted" |
 
 # Credits
+
+Project Manager: 
+------------------
+Buddy Agyin https://github.com/agyin3
 
 UI Marketing Page: 
 ------------------

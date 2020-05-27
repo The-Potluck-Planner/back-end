@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
 const express = require('express')
 const router = express.Router()
-const Users = require('./auth-model')
+const Auth = require('./auth-model')
 const {isValidReg, isValidLogin} = require('../middleware/middleware')
 const generateToken = require('./generateToken')
 
@@ -12,14 +12,13 @@ router.post('/register', (req, res, next) => {
     if(isValidReg(creds)){
         const rounds = process.env.BCRYPT_ROUNDS || 10
         const hash = bcrypt.hashSync(creds.password, rounds)
-
         creds.password = hash
         
-        Users.add(creds)
+        Auth.add(creds)
         .then(user => {
             res.status(201).json({
                 message: "User created",
-                data: user
+                user
             })
         })
         .catch(next)
@@ -34,13 +33,13 @@ router.post('/login', (req, res, next) => {
     const {username, password} = req.body
 
     if(isValidLogin(req.body)) {
-        Users.findBy({username: username})
+        Auth.findBy({username: username})
         .then(([user]) => {
             if(user && bcrypt.compareSync(password, user.password)){
                 const token = generateToken(user)
 
                 res.status(200).json({
-                    message: `Welcome, ${user.name}`,
+                    message: `${user.name}`,
                     token: token
                 })
             }else {
@@ -52,7 +51,7 @@ router.post('/login', (req, res, next) => {
         .catch(next)
     }else {
         res.status(401).json({
-            message: "Invalid username or password"
+            message: "Please provide valid username and password."
         })
     }
 })
