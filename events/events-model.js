@@ -23,7 +23,7 @@ function add(event) {
     //     return getByID(ids[0])
     // })
     //if have error adding in live server
-    const [newEvent] = await db("users").insert(event, "*")
+    const [newEvent] = await db("events").insert(event, "*")
     return newEvent
 }
 
