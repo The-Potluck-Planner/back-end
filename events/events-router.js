@@ -15,16 +15,10 @@ router.get('/users/:id', validEventID, (req, res, next) => {
         Users.getInvited(id)
     ])
     .then(([organizedEvents, guestEvents]) => {
-        res.status(200).json({organizedEvents, guestEvents})
-    })
-    .catch(next)
-})
-//GET /events/:id/food
-router.get('/:id/food', (req, res, next) => {
-    const id = req.params.id
-    Events.getFoodList(id)
-    .then(list => {
-        res.status(200).json(list)
+        Events.getFoodList(id)
+        .then(list => {
+            res.status(200).json(({organizedEvents, guestEvents, menu: list}))
+        })
     })
     .catch(next)
 })
@@ -77,6 +71,15 @@ router.delete('/:id', validEventID, (req, res, next) => {
                 message: 'Event deleted'
             })
         }
+    })
+    .catch(next)
+})
+//GET /events/:id/food
+router.get('/:id/food', (req, res, next) => {
+    const id = req.params.id
+    Events.getFoodList(id)
+    .then(list => {
+        res.status(200).json(list)
     })
     .catch(next)
 })
