@@ -32,6 +32,11 @@ GET | /api/food/:id |  N/A | N/A | Returns food object associated with this id |
 POST | /api/food | eventId, category, quantity, name (must be unique) | userID (defaults to null), assigned (defaults to false) until guest signs up for a food | Creates new food object and returns it. |
 PUT | /api/food/:id | eventId, category, quantity (string: can be '1' or '1 loaf', also able to do fractions), name (must be unique) (*these do not need to be updated, just needs to be in the body or will return error) | assigned (defaults to false), location | Updates the food with this id, returns message "food (name) updated" |
 DELETE | /api/food/:id | N/A | N/A | Deletes the food with this id, returns message "food deleted" |
+## Friends (Invited)
+Method | Endpoint | Body (*Required*) | Body (optional) | Notes
+| ----- | ----------------- | -------------------- | --------------------- | ------------------ |
+GET | /api/events/:id/invited | N/A | N/A | Returns users that have been invited to specific event, shows event title, users name, username and if they've RSVP'd |
+POST | /api/events/:id/invited | | RSVP (defualts to false)| Adds the user to be invited to that specific event. **NOT WOKRING YET|
 
 # Credits
 
