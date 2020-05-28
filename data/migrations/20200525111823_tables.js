@@ -11,7 +11,7 @@ exports.up = function(knex) {
       events.increments()
       events.integer("userID")
         .unsigned()
-        .notNullable()
+        // .notNullable()
         .references("users.id")
         .onUpdate("CASCADE")
         .onDelete("RESTRICT")

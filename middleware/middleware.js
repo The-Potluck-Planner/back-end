@@ -44,10 +44,11 @@ function validNewEvent(req, res, next) {
         res.status(400).json({
             message: "Missing event data"
         })
-    }else if(!event.userID){
-        res.status(400).json({
-            message: "Missing required userID field"
-        })
+    // }
+    // else if(!event.userID){
+    //     res.status(400).json({
+    //         message: "Missing required userID field"
+    //     })
     }else if(!event.title){
         res.status(400).json({
             message: "Missing required title field"
