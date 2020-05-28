@@ -19,7 +19,7 @@ DELETE | /api/users/:id | N/A | N/A | Deletes the user with this id, returns mes
 ## Events
 Method | Endpoint | Body (*Required*) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
-GET | /api/events/users/:id | N/A | N/A | Returns all the events organized and invited to associated with this registered user |
+GET | /api/events/users/:id | N/A | N/A | Returns all the events organized and invited to associated with this registered user. ALSO returns menu data of that event id |
 GET | /api/events/:id |  N/A | N/A | Returns event object associated with this id |
 POST | /api/events | userID(as organizer), title, month, day, year, time_From, time_To, location | description | Creates new event object and returns it. |
 PUT | /api/events/:id | userID, title, month, day, year, time_From, time_To, location (*these do not need to be updated, just needs to be in the body or will return error) | description | Updates the event with this id, returns message "event (title) updated" |
