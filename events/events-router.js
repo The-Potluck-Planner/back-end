@@ -34,7 +34,7 @@ router.post('/', validNewEvent, (req, res, next) => {
     Events.add(newEvent)
     .then(event => {
         res.status(201).json({
-            message: `Event '${event.title}' created`,
+            message: `Event created`,
             event
         })
     })
@@ -50,7 +50,7 @@ router.put('/:id', validEventID, validNewEvent, (req, res, next) => {
             Events.getByID(id)
             .then(success => {
                 res.status(200).json({
-                    message: `Event '${success.title}' updated`,
+                    message: `Event updated`,
                     success
                 })
             })
@@ -94,11 +94,12 @@ router.get('/:id/invited', validEventID, (req, res, next) => {
 //POST /events/:id/invited
 router.post('/:id/invited', validEventID, (req, res, next) => {
     const id = req.params.id
-    const invite = req.body
+    const invite = {eventsID: id, userID: req.body.userID}
     Events.addInvited(id, invite)
     .then(user => {
         res.status(201).json({
-            message: 'User was added to events'
+            message: 'User was added to events',
+            user
         })
     })
     .catch(next)
