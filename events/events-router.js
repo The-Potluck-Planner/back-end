@@ -11,14 +11,14 @@ router.use(restricted)
 router.get('/users/:id', validEventID, (req, res, next) => {
     const id = req.params.id
     Promise.all([
-        Events.test(id),
-        Users.getInvited(id)
+        Events.getUserID(id),
+        Users.getInvited(id),
+        Events.getFoodList(id)
     ])
-    .then(([organizedEvents, guestEvents]) => {
-        res.status(200).json({organizedEvents, guestEvents})
+    .then(([organizedEvents, guestEvents, list]) => {
+            res.status(200).json(({organizedEvents, guestEvents, menu: list}))
     })
     .catch(next)
-    
 })
 
 router.get('/:id', validEventID, (req, res, next) => {
@@ -35,7 +35,7 @@ router.post('/', validNewEvent, (req, res, next) => {
     Events.add(newEvent)
     .then(event => {
         res.status(201).json({
-            message: `Event '${event.title}' created`,
+            message: `Event created`,
             event
         })
     })
@@ -51,7 +51,7 @@ router.put('/:id', validEventID, validNewEvent, (req, res, next) => {
             Events.getByID(id)
             .then(success => {
                 res.status(200).json({
-                    message: `Event '${success.title}' updated`,
+                    message: `Event updated`,
                     success
                 })
             })
@@ -72,8 +72,8 @@ router.delete('/:id', validEventID, (req, res, next) => {
     })
     .catch(next)
 })
-//get /events/:id/food
-router.get('/:id/food', (req, res, next) =>{
+//GET /events/:id/food
+router.get('/:id/food', (req, res, next) => {
     const id = req.params.id
     Events.getFoodList(id)
     .then(list => {
@@ -82,5 +82,28 @@ router.get('/:id/food', (req, res, next) =>{
     .catch(next)
 })
 
+//GET /events/:id/invited
+router.get('/:id/invited', validEventID, (req, res, next) => {
+    const id = req.params.id
+    Events.getInvited(id)
+    .then(friend => {
+        res.status(200).json(friend)
+    })
+    .catch(next)
+})
+
+//POST /events/:id/invited
+router.post('/:id/invited', validEventID, (req, res, next) => {
+    const id = req.params.id
+    const invite = {eventsID: id, userID: req.body.userID}
+    Events.addInvited(id, invite)
+    .then(user => {
+        res.status(201).json({
+            message: 'User was added to events',
+            user
+        })
+    })
+    .catch(next)
+})
 
 module.exports = router

@@ -7,7 +7,9 @@ module.exports = {
     update,
     remove,
     getFoodList,
-    test
+    getUserID,
+    getInvited,
+    addInvited,
 }
 
 function get() {
@@ -17,7 +19,7 @@ function get() {
 }
 
 function getByID(id) {
-    return db.select("e.id", "u.id", "u.name as organizer", "e.title", "e.description", "e.month", "e.day", "e.year", "e.time_From", "e.time_To", "e.location")
+    return db.select("e.id", "u.id", "e.title", "e.description", "e.month", "e.day", "e.year", "e.time_From", "e.time_To", "e.location")
     .from("events as e")
     .join("users as u", "u.id", "=", "e.userID")
     .where("e.id", "=", `${id}`)
@@ -42,8 +44,32 @@ function getFoodList(id){
     .join("events as e", "e.id", "=", "f.eventID")
     .where({eventID: id})
 }
-
-function test(id){
+//get /events/users/:id
+function getUserID(id){
     return db("events")
     .where({userID: id})
+}
+//GET /events/:id/invited
+function getInvited(id){
+    return db.select("u.id", "e.title", "u.name", "u.username", "f.RSVP")
+    .from("friends as f")
+    .join("users as u", "u.id", "=", "f.userID")
+    .join("events_friends as EF", "f.id", "=", "EF.userID")
+    .join("events as e", "e.id", "=", "EF.eventsID")
+    .where({eventsID: id})
+}
+//POST /events/:id/invited
+async function addInvited(id, friend){
+    const [newInvite] = await db.select("u.name", "u.username", "e.title")
+    .from("events_friends as ef")
+    .join("users as u", "u.id", "=", "f.userID")
+    .join("friends as f", "f.id", "=", "ef.userID")
+    .join("events as e", "e.id", "=", "ef.eventsID")
+    .where({eventsID: id})
+    .insert(friend, "*")
+    .then(addTo => {
+        console.log({addTo})
+        return db("friends").insert({userID: friend.userID})
+    })
+    return newInvite
 }
