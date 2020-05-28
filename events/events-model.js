@@ -6,14 +6,21 @@ module.exports = {
     add,
     update,
     remove,
+    getFoodList,
+    test
 }
 
 function get() {
-    return db("events")
+    return db.select("e.id", "u.name as organizer", "e.title", "e.description", "e.month", "e.day", "e.year", "e.time_From", "e.time_To", "e.location")
+    .from("events as e")
+    .join("users as u", "u.id", "=", "e.userID")
 }
 
 function getByID(id) {
-    return db("events").where({id}).first()
+    return db.select("e.id", "u.id", "u.name as organizer", "e.title", "e.description", "e.month", "e.day", "e.year", "e.time_From", "e.time_To", "e.location")
+    .from("events as e")
+    .join("users as u", "u.id", "=", "e.userID")
+    .where("e.id", "=", `${id}`)
 }
 
 async function add(event) {
@@ -27,4 +34,16 @@ function update(id, changes) {
 
 function remove(id) {
     return db("events").where({id}).del()
+}
+//get /events/:id/food
+function getFoodList(id){
+    return db.select("f.id", "f.eventID", "e.title as event_name", "f.userID", "f.category", "f.quantity", "f.name", "f.assigned")
+    .from("food as f")
+    .join("events as e", "e.id", "=", "f.eventID")
+    .where({eventID: id})
+}
+
+function test(id){
+    return db("events")
+    .where({userID: id})
 }

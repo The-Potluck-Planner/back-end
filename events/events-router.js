@@ -1,18 +1,24 @@
 const express = require('express')
 const router = express.Router()
 const Events = require('./events-model')
+const Users = require('../users/users-model')
 const restricted = require('../middleware/restricted-middleware')
 const {validEventID, validNewEvent} = require('../middleware/middleware')
 
 router.use(restricted)
 
 //bringing in /api/events
-router.get('/', (req, res, next) => {
-    Events.get()
-    .then(event => {
-        res.status(200).json(event)
+router.get('/users/:id', validEventID, (req, res, next) => {
+    const id = req.params.id
+    Promise.all([
+        Events.test(id),
+        Users.getInvited(id)
+    ])
+    .then(([organizedEvents, guestEvents]) => {
+        res.status(200).json({organizedEvents, guestEvents})
     })
     .catch(next)
+    
 })
 
 router.get('/:id', validEventID, (req, res, next) => {
@@ -63,6 +69,15 @@ router.delete('/:id', validEventID, (req, res, next) => {
                 message: 'Event deleted'
             })
         }
+    })
+    .catch(next)
+})
+//get /events/:id/food
+router.get('/:id/food', (req, res, next) =>{
+    const id = req.params.id
+    Events.getFoodList(id)
+    .then(list => {
+        res.status(200).json(list)
     })
     .catch(next)
 })

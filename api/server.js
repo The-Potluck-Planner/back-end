@@ -5,6 +5,7 @@ const express = require('express')
 const authRouter = require('../auth/auth-router')
 const eventRouter = require('../events/events-router')
 const userRouter = require('../users/users-router')
+const foodRouter = require('../food/food-router')
 //other routes here
 
 const server = express()
@@ -22,6 +23,7 @@ server.get('/', (req, res) => {
 server.use('/auth', authRouter)
 server.use('/api/events', eventRouter)
 server.use('/api/users', userRouter)
+server.use('/api/food', foodRouter)
 //other routes here
 
 //error middleware

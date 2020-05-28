@@ -5,6 +5,7 @@ module.exports = {
     getByID,
     update,
     remove,
+    getInvited
 }
 
 function get() {
@@ -21,4 +22,13 @@ function update(id, changes) {
 
 function remove(id) {
     return db("users").where({id}).del()
+}
+
+function getInvited(id) {
+    return db.select("f.RSVP", "e.title", "e.description", "e.month", "e.day", "e.year", "e.time_From", "e.time_To", "e.location")
+    .from("users as u")
+    .join("friends as f", "f.userID", "=", "u.id")
+    .join("events_friends as EF", "f.id", "=", "EF.friendsID")
+    .join("events as e" ,"e.id", "=", "EF.eventsID")
+    .where("f.userID", id)
 }

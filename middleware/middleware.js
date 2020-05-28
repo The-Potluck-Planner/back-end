@@ -1,5 +1,6 @@
 const Events = require('../events/events-model')
 const Users = require('../users/users-model')
+const Food = require('../food/food-model')
 
 module.exports = {
     isValidReg,
@@ -8,6 +9,8 @@ module.exports = {
     validNewEvent,
     validUserID,
     validUser,
+    validFoodID,
+    validFood,
 
 }
 //auth
@@ -111,6 +114,49 @@ function validUser(req, res, next) {
     }else if(!user.password){
         res.status(400).json({
             message: "Missing required password field"
+        })
+    }else {
+        next()
+    }
+}
+
+//food
+function validFoodID(req, res, next) {
+    Food.getByID(req.params.id)
+    .then(food => {
+        if(food){
+            req.food = food
+            next()
+        }else {
+            res.status(400).json({
+                message: "Invalid food ID"
+            })
+        }
+    })
+    .catch(next)
+}
+
+function validFood(req, res, next) {
+    const food = req.body
+    if(!food){
+        res.status(400).json({
+            message: "Missing food data"
+        })
+    }else if(!food.eventID){
+        res.status(400).json({
+            message: "Missing required eventID field"
+        })
+    }else if(!food.name){
+        res.status(400).json({
+            message: "Missing required name field"
+        })
+    }else if(!food.category){
+        res.status(400).json({
+            message: "Missing required category field"
+        })
+    }else if(!food.quantity){
+        res.status(400).json({
+            message: "Missing required quantity field"
         })
     }else {
         next()
