@@ -7,7 +7,9 @@ module.exports = {
     update,
     remove,
     getFoodList,
-    test
+    getUserID,
+    getInvited,
+    addInvited,
 }
 
 function get() {
@@ -42,8 +44,21 @@ function getFoodList(id){
     .join("events as e", "e.id", "=", "f.eventID")
     .where({eventID: id})
 }
-
-function test(id){
+//get /events/users/:id
+function getUserID(id){
     return db("events")
     .where({userID: id})
+}
+//GET /events/:id/invited
+function getInvited(id){
+    return db.select("e.title", "u.name", "u.username", "f.RSVP")
+    .from("friends as f")
+    .join("users as u", "u.id", "=", "f.userID")
+    .join("events_friends as EF", "f.id", "=", "EF.friendsID")
+    .join("events as e", "e.id", "=", "EF.eventsID")
+    .where({eventsID: id})
+}
+//POST /events/:id/invited
+function addInvited(id){
+
 }

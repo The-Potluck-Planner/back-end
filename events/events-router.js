@@ -11,14 +11,13 @@ router.use(restricted)
 router.get('/users/:id', validEventID, (req, res, next) => {
     const id = req.params.id
     Promise.all([
-        Events.test(id),
+        Events.getUserID(id),
         Users.getInvited(id)
     ])
     .then(([organizedEvents, guestEvents]) => {
         res.status(200).json({organizedEvents, guestEvents})
     })
     .catch(next)
-    
 })
 
 router.get('/:id', validEventID, (req, res, next) => {
@@ -72,8 +71,8 @@ router.delete('/:id', validEventID, (req, res, next) => {
     })
     .catch(next)
 })
-//get /events/:id/food
-router.get('/:id/food', (req, res, next) =>{
+//GET /events/:id/food
+router.get('/:id/food', (req, res, next) => {
     const id = req.params.id
     Events.getFoodList(id)
     .then(list => {
@@ -82,5 +81,16 @@ router.get('/:id/food', (req, res, next) =>{
     .catch(next)
 })
 
+//GET /events/:id/invited
+router.get('/:id/invited', validEventID, (req, res, next) => {
+    const id = req.params.id
+    Events.getInvited(id)
+    .then(friend => {
+        res.status(200).json(friend)
+    })
+    .catch(next)
+})
+
+//POST /events/:id/invited
 
 module.exports = router
