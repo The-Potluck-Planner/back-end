@@ -12,13 +12,11 @@ router.get('/users/:id', validEventID, (req, res, next) => {
     const id = req.params.id
     Promise.all([
         Events.getUserID(id),
-        Users.getInvited(id)
-    ])
-    .then(([organizedEvents, guestEvents]) => {
+        Users.getInvited(id),
         Events.getFoodList(id)
-        .then(list => {
+    ])
+    .then(([organizedEvents, guestEvents, list]) => {
             res.status(200).json(({organizedEvents, guestEvents, menu: list}))
-        })
     })
     .catch(next)
 })
