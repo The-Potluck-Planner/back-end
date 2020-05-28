@@ -59,6 +59,13 @@ function getInvited(id){
     .where({eventsID: id})
 }
 //POST /events/:id/invited
-function addInvited(id){
-
+async function addInvited(id, friend){
+    const [newInvite] = await db.select("u.name", "u.username", "e.title")
+    .from("friends as f")
+    .join("users as u", "u.id", "=", "f.userID")
+    .join("events_friends as ef", "f.id", "=", "ef.friendsID")
+    .join("events as e", "e.id", "=", "ef.eventsID")
+    .where({eventsID: id})
+    .insert(friend, "*")
+    return newInvite
 }

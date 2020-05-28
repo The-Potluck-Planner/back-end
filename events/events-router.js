@@ -92,5 +92,16 @@ router.get('/:id/invited', validEventID, (req, res, next) => {
 })
 
 //POST /events/:id/invited
+router.post('/:id/invited', validEventID, (req, res, next) => {
+    const id = req.params.id
+    const invite = req.body
+    Events.addInvited(id, invite)
+    .then(user => {
+        res.status(201).json({
+            message: 'User was added to events'
+        })
+    })
+    .catch(next)
+})
 
 module.exports = router
