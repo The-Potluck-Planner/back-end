@@ -36,7 +36,7 @@ DELETE | /api/food/:id | N/A | N/A | Deletes the food with this id, returns mess
 Method | Endpoint | Body (*Required*) | Body (optional) | Notes
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
 GET | /api/events/:id/invited | N/A | N/A | Returns users that have been invited to specific event, shows event title, users name, username and if they've RSVP'd |
-POST | /api/events/:id/invited | | RSVP (defualts to false)| Adds the user to be invited to that specific event. **NOT WOKRING YET|
+POST | /api/events/:id/invited | userID (of the user being added) | N/A | Adds the user to be invited to that specific event. --Adds to the friends and events_friends table |
 
 # Credits
 
