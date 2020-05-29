@@ -51,7 +51,7 @@ function getUserID(id){
 }
 //GET /events/:id/invited
 function getInvited(id){
-    return db.select("u.id", ".id", "e.title", "u.name", "u.username", "f.RSVP")
+    return db.select("u.id", "e.id", "e.title", "u.name", "u.username", "f.RSVP")
     .from("friends as f")
     .join("users as u", "u.id", "=", "f.userID")
     .join("events_friends as EF", "f.id", "=", "EF.userID")
