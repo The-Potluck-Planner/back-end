@@ -34,7 +34,29 @@ describe('AUTH', () => {
     })
 
     describe('POST Login', () => {
-        it.todo('Returns status 200')
-        it.todo('can see users name')
+        it('Returns status 200', () => {
+            return supertest(server)
+            .post('/auth/login')
+            .send({username: "lambda", password: "school"})
+            .then(res => {
+                expect(res.status).toEqual(200)
+            })
+        })
+        it('can see users name', () => {
+            return supertest(server)
+            .post('/auth/login')
+            .send({username: "lambda", password: "school"})
+            .then(res => {
+                expect(res.body.user).toBe("Rachele")
+            })
+        })
+        it('sends 401 status if invalid username or password', () => {
+            return supertest(server)
+            .post('/auth/login')
+            .send({username: "lamdba", password: "school"})
+            .then(res => {
+                expect(res.status).toEqual(401)
+            })
+        })
     })
 })
