@@ -15,7 +15,13 @@ describe('SERVER', () => {
             })
         })
 
-        it.todo('returns `api: Running Successfully!`')
+        it('returns `api: Running Successfully!`', () => {
+            return supertest(server)
+            .get('/')
+            .then(res => {
+                expect(res.body.api).toBe('Running Successfully!')
+            })
+        })
     })
 })
 
