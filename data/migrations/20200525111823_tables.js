@@ -34,7 +34,6 @@ exports.up = function(knex) {
         .onDelete("RESTRICT")
       food.integer("userID")
         .unsigned()
-        .defaultTo(null)
         .references("users.id")
         .onUpdate("CASCADE")
         .onDelete("RESTRICT")
